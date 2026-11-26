@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тест: y = ax², y = ax³, y = k/x функциялары — 7Ә</title>
+<style>
+:root{--ink:#1f2937;--muted:#6b7280;--line:#d6d9de;--accent:#1e3a5f;--bg:#f6f6f3;--warn:#8a5a00}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Times New Roman",Georgia,serif;font-size:18px;line-height:1.5}
+.wrap{max-width:780px;margin:0 auto;padding:22px 14px 40px}
+.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:26px 26px 22px}
+.hidden{display:none!important}
+.lbl{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+h1{font-size:25px;margin:0 0 10px;color:var(--accent);font-weight:bold}
+.topic{font-size:19px;margin:0 0 14px}
+.meta{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:0 0 18px;font-size:16px}
+.meta div{margin:2px 0}
+.meta b{display:inline-block;min-width:110px;font-weight:normal;color:var(--muted)}
+.rules{font-size:15px;color:#374151;background:#fafaf8;border:1px solid var(--line);border-radius:4px;padding:10px 14px;margin:0 0 18px}
+.rules ul{margin:4px 0 0;padding-left:20px}
+label.f{display:block;font-size:15px;color:var(--muted);margin:12px 0 4px}
+input[type=text],select{width:100%;font:inherit;font-size:17px;padding:9px 10px;border:1px solid #b9bec6;border-radius:4px;background:#fff;color:var(--ink)}
+input[type=text]:focus,select:focus{outline:2px solid #9fb3cc;border-color:var(--accent)}
+.btn{font:inherit;font-size:17px;padding:10px 26px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.btn:disabled{background:#c7ccd3;border-color:#c7ccd3;cursor:not-allowed}
+.btn.sec{background:#fff;color:var(--accent)}
+.row{display:flex;justify-content:flex-end;margin-top:20px}
+.qhead{display:flex;justify-content:space-between;align-items:center;font-size:15px;color:var(--muted);margin-bottom:6px}
+.timer{font-variant-numeric:tabular-nums;font-size:17px;color:var(--ink);border:1px solid var(--line);padding:2px 10px;border-radius:4px}
+.timer.low{color:#991b1b;border-color:#e0b4b4}
+.bar{height:3px;background:#e5e7eb;margin-bottom:18px}
+.bar i{display:block;height:100%;background:var(--accent);width:0}
+.qtext{font-size:19px;margin:0 0 14px}
+.graph{text-align:center;margin:6px 0 14px}
+.graph svg{width:100%;height:auto;background:#fff}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:4px;padding:9px 12px;cursor:pointer;font-size:18px;background:#fff}
+.opt:hover{border-color:#9aa6b6}
+.opt.sel{border-color:var(--accent);background:#eef2f7}
+.opt .let{width:26px;height:26px;border:1px solid #9aa6b6;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex:none}
+.opt.sel .let{background:var(--accent);color:#fff;border-color:var(--accent)}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em;margin:0 2px;line-height:1.15}
+.fr>span:first-child{border-bottom:1px solid currentColor;padding:0 3px}
+.fr>span:last-child{padding:0 3px}
+.num{max-width:340px}
+.num input{width:100%;font:inherit;font-size:22px;padding:8px 12px;border:1px solid #b9bec6;border-radius:4px;text-align:right;font-variant-numeric:tabular-nums}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.kp button{font:inherit;font-size:19px;padding:9px 0;border:1px solid var(--line);background:#fafaf8;border-radius:4px;cursor:pointer;color:var(--ink)}
+.kp button:active{background:#e8ebef}
+.hint{font-size:14px;color:var(--muted);margin-top:6px}
+.res-score{font-size:42px;color:var(--accent);margin:8px 0}
+table.r{border-collapse:collapse;width:100%;font-size:16px;margin-top:10px}
+table.r td{border-bottom:1px solid var(--line);padding:6px 4px}
+table.r td:last-child{text-align:right}
+.status{font-size:15px;color:var(--muted);margin-top:14px}
+.modal{position:fixed;inset:0;background:rgba(20,25,35,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
+.modal .box{background:#fff;max-width:460px;border-radius:6px;padding:22px;border-top:4px solid var(--warn)}
+.modal h3{margin:0 0 8px;color:var(--warn);font-size:20px}
+.modal p{margin:0 0 14px;font-size:17px}
+.foot{font-size:13px;color:var(--muted);text-align:center;margin-top:14px}
+@media(max-width:520px){.card{padding:18px 14px}body{font-size:17px}h1{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- БАСТАПҚЫ БЕТ -->
+<div id="start" class="card">
+  <p class="lbl">Тест</p>
+  <h1>y = ax<sup>2</sup>, y = ax<sup>3</sup> және y = <span class="fr"><span>k</span><span>x</span></span> (k ≠ 0) түріндегі функциялар, олардың графиктері және қасиеттері</h1>
+  <div class="meta">
+    <div><b>Пән:</b> Алгебра</div>
+    <div><b>Оқу мақсаты:</b> 7.4.1.10 — функциялардың графиктерін салу және олардың қасиеттерін білу</div>
+    <div><b>Мұғалім:</b> математика пәнінің мұғалімі – Кунгозин Даулет Багдашұлы</div>
+  </div>
+  <div class="rules">
+    Тест ережелері:
+    <ul>
+      <li>10 сұрақ: 8 сұрақ — бір дұрыс жауапты таңдау, 2 сұрақ — санды енгізу.</li>
+      <li>Әр сұраққа 3 минут беріледі. Уақыт біткенде келесі сұраққа автоматты түрде өтеді.</li>
+      <li>1 дұрыс жауап — 1 балл, барлығы 10 балл. Алдыңғы сұраққа қайту мүмкін емес.</li>
+      <li>Тест кезінде қойындыны жасырсаңыз немесе басқа қосымшаға өтсеңіз, баға 1 балға төмендетіледі.</li>
+    </ul>
+  </div>
+  <label class="f" for="fio">Аты-жөні (тегі, аты)</label>
+  <input type="text" id="fio" autocomplete="off" placeholder="Введите ФИ">
+  <label class="f" for="cls">Сынып</label>
+  <select id="cls"><option value="">— таңдаңыз —</option><option value="7Ә">7Ә</option></select>
+  <label class="f" for="var">Нұсқа</label>
+  <select id="var"><option value="">— таңдаңыз —</option><option value="1">1-нұсқа</option><option value="2">2-нұсқа</option></select>
+  <div class="row"><button class="btn" id="go" disabled>Келесі</button></div>
+</div>
+
+<!-- СҰРАҚ БЕТІ -->
+<div id="quiz" class="card hidden">
+  <div class="qhead"><span id="qnum"></span><span class="timer" id="timer">03:00</span></div>
+  <div class="bar"><i id="prog"></i></div>
+  <div id="qbody"></div>
+  <div class="row"><button class="btn" id="next">Келесі</button></div>
+</div>
+
+<!-- НӘТИЖЕ -->
+<div id="result" class="card hidden">
+  <p class="lbl">Нәтиже</p>
+  <div id="resName" style="font-size:19px"></div>
+  <div class="res-score" id="resScore"></div>
+  <table class="r" id="resTable"></table>
+  <div class="status" id="sendStatus">Нәтиже жіберілуде…</div>
+</div>
+
+<div class="foot">Алгебра · 7Ә · Кунгозин Д. Б.</div>
+</div>
+
+<!-- ЕСКЕРТУ -->
+<div id="warn" class="modal hidden">
+  <div class="box">
+    <h3>Ескерту!</h3>
+    <p>Сіз тест кезінде қойындыны жасырдыңыз немесе басқа терезеге өттіңіз. Тест жалғасады, бірақ қойындыны жасырған жағдайда баға <b>1 балға төмендетіледі</b>.</p>
+    <p style="font-size:15px;color:#6b7280">Жасыру саны: <span id="hideCnt">0</span>. Бұл мұғалімге жіберіледі.</p>
+    <div class="row" style="margin-top:0"><button class="btn" id="warnOk">Түсіндім, жалғастыру</button></div>
+  </div>
+</div>
+
+<script>
+/* ============ БАПТАУ ============ */
+// Apps Script веб-қосымшасының сілтемесі (Deploy → Web app → URL)
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVFAXGg6jaJf0zpOM6xMXwjBuLOTKq3uiVPMCJtAaycOGNASc3ev-rKG00pN4LIKf1/exec";
+const TIME_PER_Q = 180;          // 3 минут
+const MAX_SCORE = 10;
+const TOPIC = "y=ax², y=ax³, y=k/x функциялары (7.4.1.10)";
+
+/* ============ КӨМЕКШІ ============ */
+const F = (a,b) => `<span class="fr"><span>${a}</span><span>${b}</span></span>`;
+const fmt = v => String(v).replace('-', '−').replace('.', ',');
+
+/* SVG-график: тор (клетка), нөмірленген осьтер, нақты масштаб */
+let gid = 0;
+function graph(cfg){
+  const {xmin,xmax,ymin,ymax,fns=[],pts=[]} = cfg;
+  const cell = Math.floor(Math.min(420/(xmax-xmin), 400/(ymax-ymin)));
+  const pad = 30;
+  const w = (xmax-xmin)*cell, h = (ymax-ymin)*cell;
+  const X = x => pad + (x-xmin)*cell, Y = y => pad + (ymax-y)*cell;
+  const id = 'g' + (++gid);
+  const W = w + 2*pad, H = h + 2*pad;
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="max-width:${W}px" xmlns="http://www.w3.org/2000/svg" font-family="Times New Roman, serif">`;
+  s += `<defs><clipPath id="${id}c"><rect x="${pad}" y="${pad}" width="${w}" height="${h}"/></clipPath>
+        <marker id="${id}a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L10,5 L0,9 z" fill="#111"/></marker></defs>`;
+  // тор
+  for(let x=xmin;x<=xmax;x++) s += `<line x1="${X(x)}" y1="${pad}" x2="${X(x)}" y2="${pad+h}" stroke="#c9d3df" stroke-width="1"/>`;
+  for(let y=ymin;y<=ymax;y++) s += `<line x1="${pad}" y1="${Y(y)}" x2="${pad+w}" y2="${Y(y)}" stroke="#c9d3df" stroke-width="1"/>`;
+  // осьтер
+  s += `<line x1="${pad-4}" y1="${Y(0)}" x2="${pad+w+18}" y2="${Y(0)}" stroke="#111" stroke-width="1.6" marker-end="url(#${id}a)"/>`;
+  s += `<line x1="${X(0)}" y1="${pad+h+4}" x2="${X(0)}" y2="${pad-18}" stroke="#111" stroke-width="1.6" marker-end="url(#${id}a)"/>`;
+  s += `<text x="${pad+w+14}" y="${Y(0)+18}" font-size="16" font-style="italic">x</text>`;
+  s += `<text x="${X(0)+8}" y="${pad-10}" font-size="16" font-style="italic">y</text>`;
+  // сандар
+  const step = cell < 26 ? 2 : 1;
+  const fs = cell < 26 ? 11 : 13;
+  for(let x=xmin;x<=xmax;x++){ if(x===0||x%step) continue;
+    s += `<line x1="${X(x)}" y1="${Y(0)-3}" x2="${X(x)}" y2="${Y(0)+3}" stroke="#111"/>`;
+    s += `<text x="${X(x)}" y="${Y(0)+15}" font-size="${fs}" text-anchor="middle">${fmt(x)}</text>`; }
+  for(let y=ymin;y<=ymax;y++){ if(y===0||y%step) continue;
+    s += `<line x1="${X(0)-3}" y1="${Y(y)}" x2="${X(0)+3}" y2="${Y(y)}" stroke="#111"/>`;
+    s += `<text x="${X(0)-5}" y="${Y(y)+4}" font-size="${fs}" text-anchor="end">${fmt(y)}</text>`; }
+  s += `<text x="${X(0)-5}" y="${Y(0)+15}" font-size="${fs}" text-anchor="end">0</text>`;
+  // қисықтар
+  fns.forEach(fn=>{
+    const ranges = fn.split ? [[xmin,-0.02],[0.02,xmax]] : [[xmin,xmax]];
+    let d = '';
+    ranges.forEach(([a,b])=>{
+      let first = true;
+      for(let x=a; x<=b+1e-9; x+=0.02){
+        let y = fn.f(x);
+        y = Math.max(ymin-40, Math.min(ymax+40, y));
+        d += (first?'M':'L') + X(x).toFixed(2) + ',' + Y(y).toFixed(2) + ' ';
+        first = false;
+      }
+    });
+    s += `<path d="${d}" fill="none" stroke="#1e3a5f" stroke-width="2.4" clip-path="url(#${id}c)"/>`;
+  });
+  pts.forEach(([x,y])=> s += `<circle cx="${X(x)}" cy="${Y(y)}" r="3.6" fill="#b3261e"/>`);
+  s += `</svg>`;
+  return s;
+}
+
+/* ============ СҰРАҚТАР ============ */
+const V = {
+ 1: [
+  {t:'mc', q:'Суретте қандай функцияның графигі бейнеленген?',
+   g:{xmin:-4,xmax:4,ymin:-9,ymax:2,fns:[{f:x=>-x*x}],pts:[[-3,-9],[-2,-4],[-1,-1],[0,0],[1,-1],[2,-4],[3,-9]]},
+   o:['y = x<sup>2</sup>','y = −x<sup>2</sup>','y = x<sup>3</sup>','y = −'+F(1,'x')], c:1},
+  {t:'mc', q:'y = 2x<sup>2</sup> функциясының x = −3 болғандағы мәнін табыңыз.',
+   o:['18','−18','12','36'], c:0},
+  {t:'mc', q:'Суретте y = '+F('k','x')+' функциясының графигі берілген. Функцияны формуламен көрсетіңіз.',
+   g:{xmin:-5,xmax:5,ymin:-5,ymax:5,fns:[{f:x=>4/x,split:true}],pts:[[1,4],[2,2],[4,1],[-1,-4],[-2,-2],[-4,-1]]},
+   o:['y = '+F(4,'x'),'y = −'+F(4,'x'),'y = '+F(2,'x'),'y = 4x'], c:0},
+  {t:'mc', q:'y = −'+F(3,'x')+' функциясы графигінің тармақтары қай координаттық ширектерде орналасқан?',
+   o:['I және III ширектерде','II және IV ширектерде','I және II ширектерде','III және IV ширектерде'], c:1},
+  {t:'mc', q:'Төмендегі нүктелердің қайсысы y = x<sup>3</sup> функциясының графигіне тиісті?',
+   o:['A(−2; −8)','B(2; −8)','C(−2; 8)','D(3; 9)'], c:0},
+  {t:'mc', q:'y = ax<sup>2</sup> функциясының графигі A(2; 12) нүктесі арқылы өтеді. a коэффициентін табыңыз.',
+   o:['3','6','24',F(1,3)], c:0},
+  {t:'mc', q:'y = x<sup>2</sup> функциясының қай қасиеті дұрыс?',
+   o:['x > 0 болғанда функция өседі','Функцияның ең үлкен мәні 0-ге тең','Графигі III ширек арқылы өтеді','x < 0 болғанда функция өседі'], c:0},
+  {t:'mc', q:'Суретте y = ax<sup>3</sup> функциясының графигі бейнеленген. a коэффициентінің мәнін анықтаңыз.',
+   g:{xmin:-3,xmax:3,ymin:-6,ymax:6,fns:[{f:x=>0.5*x*x*x}],pts:[[-2,-4],[0,0],[2,4]]},
+   o:['0,5','2','4','−0,5'], c:0},
+  {t:'num', q:'y = '+F('k','x')+' функциясының графигі M(−3; 4) нүктесі арқылы өтеді. k коэффициентін табыңыз.', a:-12},
+  {t:'num', q:'y = −2x<sup>3</sup> функциясының x = −2 болғандағы мәнін есептеңіз.', a:16}
+ ],
+ 2: [
+  {t:'mc', q:'Суретте қандай функцияның графигі бейнеленген?',
+   g:{xmin:-3,xmax:3,ymin:-8,ymax:8,fns:[{f:x=>x*x*x}],pts:[[-2,-8],[-1,-1],[0,0],[1,1],[2,8]]},
+   o:['y = x<sup>2</sup>','y = −x<sup>3</sup>','y = x<sup>3</sup>','y = '+F(1,'x')], c:2},
+  {t:'mc', q:'y = −3x<sup>2</sup> функциясының x = 2 болғандағы мәнін табыңыз.',
+   o:['−12','12','−36','36'], c:0},
+  {t:'mc', q:'Суретте y = '+F('k','x')+' функциясының графигі берілген. Функцияны формуламен көрсетіңіз.',
+   g:{xmin:-6,xmax:6,ymin:-6,ymax:6,fns:[{f:x=>-6/x,split:true}],pts:[[1,-6],[2,-3],[3,-2],[6,-1],[-1,6],[-2,3],[-3,2],[-6,1]]},
+   o:['y = '+F(6,'x'),'y = −'+F(6,'x'),'y = −'+F(3,'x'),'y = −6x'], c:1},
+  {t:'mc', q:'y = '+F(5,'x')+' функциясы графигінің тармақтары қай координаттық ширектерде орналасқан?',
+   o:['I және III ширектерде','II және IV ширектерде','I және II ширектерде','III және IV ширектерде'], c:0},
+  {t:'mc', q:'Төмендегі нүктелердің қайсысы y = −x<sup>3</sup> функциясының графигіне тиісті?',
+   o:['A(2; −8)','B(−2; −8)','C(2; 8)','D(−3; −27)'], c:0},
+  {t:'mc', q:'y = ax<sup>2</sup> функциясының графигі B(−3; 18) нүктесі арқылы өтеді. a коэффициентін табыңыз.',
+   o:['2','−2','6',F(1,2)], c:0},
+  {t:'mc', q:'y = −x<sup>2</sup> функциясының қай қасиеті дұрыс?',
+   o:['x > 0 болғанда функция кемиді','Функцияның ең кіші мәні 0-ге тең','Графигі I ширек арқылы өтеді','x < 0 болғанда функция кемиді'], c:0},
+  {t:'mc', q:'Суретте y = ax<sup>3</sup> функциясының графигі бейнеленген. a коэффициентінің мәнін анықтаңыз.',
+   g:{xmin:-3,xmax:3,ymin:-8,ymax:8,fns:[{f:x=>2*x*x*x}],pts:[[-1,-2],[0,0],[1,2]]},
+   o:['2',F(1,2),'−2','8'], c:0},
+  {t:'num', q:'y = '+F('k','x')+' функциясының графигі N(5; −2) нүктесі арқылы өтеді. k коэффициентін табыңыз.', a:-10},
+  {t:'num', q:'y = −4x<sup>2</sup> функциясының x = −3 болғандағы мәнін есептеңіз.', a:-36}
+ ]
+};
+
+/* ============ КҮЙ ============ */
+const $ = id => document.getElementById(id);
+let S = null, tick = null;
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+
+/* Бастапқы бет: батырма белсенділігі */
+function checkStart(){ $('go').disabled = !($('fio').value.trim().length >= 3 && $('cls').value && $('var').value); }
+['fio','cls','var'].forEach(id=>{ $(id).addEventListener('input',checkStart); $(id).addEventListener('change',checkStart); });
+
+$('go').onclick = () => {
+  const v = $('var').value;
+  S = { name:$('fio').value.trim().replace(/\s+/g,' '), cls:$('cls').value, variant:v,
+        qs: V[v].map(q => ({...q, order: q.t==='mc' ? shuffle([0,1,2,3]) : null})),
+        ans: Array(10).fill(null), i:0, hides:0, started:Date.now(), running:true };
+  $('start').classList.add('hidden'); $('quiz').classList.remove('hidden');
+  show();
+};
+
+function show(){
+  const q = S.qs[S.i];
+  $('qnum').textContent = `Сұрақ ${S.i+1} / 10`;
+  $('prog').style.width = (S.i*10)+'%';
+  $('next').textContent = S.i===9 ? 'Тестті аяқтау' : 'Келесі';
+  let h = `<p class="qtext"><b>${S.i+1}.</b> ${q.q}</p>`;
+  if(q.g) h += `<div class="graph">${graph(q.g)}</div>`;
+  if(q.t==='mc'){
+    h += `<div class="opts">` + q.order.map((oi,k)=>
+      `<div class="opt" data-oi="${oi}"><span class="let">${'ABCD'[k]}</span><span>${q.o[oi]}</span></div>`).join('') + `</div>`;
+  } else {
+    h += `<div class="num"><input id="numIn" type="text" inputmode="decimal" autocomplete="off" placeholder="Жауапты енгізіңіз">
+      <div class="kp">
+        ${['7','8','9','⌫','4','5','6','C','1','2','3','−','±','0',',',''].map(k=> k?`<button type="button" data-k="${k}">${k}</button>`:'<span></span>').join('')}
+      </div><div class="hint">Жауапты сан түрінде енгізіңіз (бүтін немесе ондық бөлшек).</div></div>`;
+  }
+  $('qbody').innerHTML = h;
+  if(q.t==='mc'){
+    document.querySelectorAll('.opt').forEach(el=> el.onclick = () => {
+      document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+      el.classList.add('sel'); S.ans[S.i] = +el.dataset.oi;
+    });
+  } else {
+    const inp = $('numIn');
+    inp.addEventListener('input', () => { inp.value = inp.value.replace(/[^0-9,.\-−]/g,''); S.ans[S.i] = inp.value; });
+    document.querySelectorAll('.kp button').forEach(b=> b.onclick = () => {
+      let v = inp.value, k = b.dataset.k;
+      if(k==='⌫') v = v.slice(0,-1);
+      else if(k==='C') v = '';
+      else if(k==='−'){ if(v==='') v='−'; }
+      else if(k==='±'){ v = (v.startsWith('−')||v.startsWith('-')) ? v.slice(1) : '−'+v; }
+      else if(k===','){ if(!/[,.]/.test(v)) v = (v===''||v==='−' ? v+'0' : v) + ','; }
+      else v += k;
+      inp.value = v; S.ans[S.i] = v;
+    });
+  }
+  startTimer();
+}
+
+function startTimer(){
+  clearInterval(tick);
+  let left = TIME_PER_Q;
+  const draw = () => { const m=Math.floor(left/60), s=left%60;
+    $('timer').textContent = String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    $('timer').classList.toggle('low', left<=30); };
+  draw();
+  tick = setInterval(()=>{ left--; draw(); if(left<=0){ clearInterval(tick); nextQ(); } },1000);
+}
+
+function nextQ(){
+  if(S.i < 9){ S.i++; show(); } else finish();
+}
+$('next').onclick = nextQ;
+
+function parseNum(v){
+  if(v==null) return NaN;
+  v = String(v).trim().replace('−','-').replace(',','.');
+  if(v===''||v==='-') return NaN;
+  return Number(v);
+}
+
+function finish(){
+  clearInterval(tick); S.running = false;
+  let correct = 0; const det = [];
+  S.qs.forEach((q,k)=>{
+    let ok = false, given = '';
+    if(q.t==='mc'){ ok = S.ans[k]===q.c;
+      given = S.ans[k]==null ? '—' : 'ABCD'[q.order.indexOf(S.ans[k])]; }
+    else { const n = parseNum(S.ans[k]); ok = !isNaN(n) && Math.abs(n-q.a)<1e-9;
+      given = S.ans[k]==null||S.ans[k]==='' ? '—' : String(S.ans[k]); }
+    if(ok) correct++;
+    det.push(`${k+1}:${ok?'+':'−'}(${given})`);
+  });
+  const penalty = S.hides>0 ? 1 : 0;
+  const score = Math.max(0, correct - penalty);
+  const sec = Math.round((Date.now()-S.started)/1000);
+  const dur = Math.floor(sec/60)+' мин '+(sec%60)+' с';
+
+  let att = 1;
+  try{ const key='att_'+S.cls+'_'+S.name.toLowerCase(); att = (+localStorage.getItem(key)||0)+1; localStorage.setItem(key,att); }catch(e){}
+
+  $('quiz').classList.add('hidden'); $('result').classList.remove('hidden');
+  $('resName').textContent = `${S.name}, ${S.cls}, ${S.variant}-нұсқа`;
+  $('resScore').textContent = `${score} / ${MAX_SCORE}`;
+  $('resTable').innerHTML =
+    `<tr><td>Дұрыс жауаптар</td><td>${correct} / 10</td></tr>
+     <tr><td>Қойындыны жасыру саны</td><td>${S.hides}</td></tr>
+     <tr><td>Айып балл</td><td>${penalty ? '−1' : '0'}</td></tr>
+     <tr><td>Қорытынды балл</td><td><b>${score} / ${MAX_SCORE}</b></td></tr>
+     <tr><td>Жұмсалған уақыт</td><td>${dur}</td></tr>`;
+
+  send({ name:S.name, cls:S.cls, variant:S.variant, correct, penalty, score, max:MAX_SCORE,
+         hides:S.hides, duration:dur, details:det.join('  '), attemptLocal:att, topic:TOPIC });
+}
+
+function send(data){
+  if(!SCRIPT_URL.startsWith('https://')){ $('sendStatus').textContent='Ескерту: Google Таблица сілтемесі орнатылмаған.'; return; }
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)})
+    .then(()=> $('sendStatus').textContent='Нәтиже мұғалімге жіберілді. Бетті жаба аласыз.')
+    .catch(()=>{ $('sendStatus').innerHTML='Нәтиже жіберілмеді. Интернетті тексеріп, <button class="btn sec" id="retry" style="padding:4px 12px;font-size:15px">қайта жіберу</button>';
+      $('retry').onclick = () => { $('sendStatus').textContent='Нәтиже жіберілуде…'; send(data); }; });
+}
+
+/* ============ ҚОЙЫНДЫНЫ ЖАСЫРУДЫ БАҚЫЛАУ ============ */
+document.addEventListener('visibilitychange', () => {
+  if(!S || !S.running) return;
+  if(document.hidden){ S.hides++; }
+  else { $('hideCnt').textContent = S.hides; $('warn').classList.remove('hidden'); }
+});
+$('warnOk').onclick = () => $('warn').classList.add('hidden');
+window.addEventListener('beforeunload', e => { if(S && S.running){ e.preventDefault(); e.returnValue=''; } });
+</script>
+</body>
+</html>
